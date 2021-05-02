@@ -61,7 +61,7 @@ const Client = () => {
                                         className="fas fa-eye text-secondary mr-2"></i></Link>
                                     <Link to={`/clients/edit/${client.id}`}><i
                                         className="fas fa-edit text-primary mr-2"></i></Link>
-                                    <a onClick={() => deleteClient(client.id)}> <i
+                                    <a href="#" onClick={() => deleteClient(client.id)}> <i
                                         className="fas fa-trash text-danger"></i></a>
                                 </td>
                             </tr>

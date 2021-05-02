@@ -25,7 +25,7 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
-                <a className="btn btn-outline-light" onClick={(e) => downloadClientCSV(e)}>Download Client CSV</a>
+                <a href="#" className="btn btn-outline-light" onClick={(e) => downloadClientCSV(e)}>Download Client CSV</a>
             </div>
         </nav>
     );
