@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import Utils from "../../Utils.const";
 
 const Client = () => {
 
@@ -11,7 +12,7 @@ const Client = () => {
     }, []);
 
     const loadClients = async () => {
-        const result = await axios.get("http://localhost:9999/clients");
+        const result = await axios.get(Utils.URL + Utils.CLIENTS);
         console.log(result);
         setClient(result.data.reverse());
     }
@@ -19,7 +20,7 @@ const Client = () => {
     const deleteClient = async id => {
         const r = window.confirm("Do you really want to delete?");
         if (r === true) {
-            await axios.delete(`http://localhost:9999/clients/${id}`);
+            await axios.delete(`${Utils.URL + Utils.CLIENTS}/${id}`);
             loadClients();
         }
 
@@ -31,7 +32,8 @@ const Client = () => {
 
                 <div className="row">
                     <div className="col-6"><h2>Client Page</h2></div>
-                    <div className="col-6"><Link className="btn btn-primary float-right" to="/clients/add">Add Client</Link></div>
+                    <div className="col-6"><Link className="btn btn-primary float-right" to="/clients/add">Add
+                        Client</Link></div>
 
                 </div>
                 <table className="table border shadow">
@@ -55,7 +57,8 @@ const Client = () => {
                                 <td>{client.phone}</td>
                                 <td>{client.email}</td>
                                 <td>
-                                    <Link to={`/clients/${client.id}`}><i className="fas fa-eye text-secondary mr-2"></i></Link>
+                                    <Link to={`/clients/${client.id}`}><i
+                                        className="fas fa-eye text-secondary mr-2"></i></Link>
                                     <Link to={`/clients/edit/${client.id}`}><i
                                         className="fas fa-edit text-primary mr-2"></i></Link>
                                     <a onClick={() => deleteClient(client.id)}> <i

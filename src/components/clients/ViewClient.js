@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import Utils from "../../Utils.const";
 
 const ViewClient = () => {
     const [client, setClient] = useState({
@@ -20,7 +21,7 @@ const ViewClient = () => {
     }, []);
 
     const loadClient = async () => {
-        const res = await axios.get(`http://localhost:9999/clients/${id}`);
+        const res = await axios.get(`${Utils.URL + Utils.CLIENTS}/${id}`);
         setClient(res.data);
     };
     return (

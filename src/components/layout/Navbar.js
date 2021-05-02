@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import Utils from "../../Utils.const";
 
 const downloadClientCSV = async (e) => {
     e.preventDefault();
     console.log('downloading client csv file');
-    window.open("http://localhost:9999/download");
+    window.open(Utils.URL + Utils.DOWNLOAD);
 }
 const NavBar = () => {
     return (

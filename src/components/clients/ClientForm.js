@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {Link, useHistory, useParams} from "react-router-dom";
+import Utils from "../../Utils.const";
 
 const initialClientState = {
     name: "",
@@ -45,7 +46,7 @@ const ClientForm = () => {
     };
 
     const onAdd = async e => {
-        await axios.post("http://localhost:9999/clients", client);
+        await axios.post(Utils.URL + Utils.CLIENTS, client);
         history.push("/");
     };
 
@@ -56,12 +57,12 @@ const ClientForm = () => {
     }, []);
 
     const loadClient = async () => {
-        const result = await axios.get(`http://localhost:9999/clients/${id}`);
+        const result = await axios.get(`${Utils.URL + Utils.CLIENTS}/${id}`);
         setClient(result.data);
     };
 
     const onUpdate = async e => {
-        await axios.patch(`http://localhost:9999/clients/${id}`, client);
+        await axios.patch(`${Utils.URL + Utils.CLIENTS}/${id}`, client);
         history.push("/");
     };
 
