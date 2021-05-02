@@ -37,7 +37,7 @@ const ClientForm = () => {
     let formType = id ? "Update" : "Add";
 
     const onInputChange = e => {
-        setClient({...client, [e.target.name]: e.target.value.trim()});
+        setClient({...client, [e.target.name]: e.target.value});
         if (e.target.value.trim().length === 0) {
             setError({...error, [e.target.name]: "Enter valid " + e.target.name});
         } else {
