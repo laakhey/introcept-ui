@@ -5,16 +5,29 @@ import Utils from "../../Utils.const";
 
 const Client = () => {
 
-    const [clients, setClient] = useState([]);
-
+    const [p, setPage] = useState([]);
+    const {elements, page, totalPage, totalElements} = p;
     useEffect(() => {
         loadClients();
     }, []);
 
-    const loadClients = async () => {
-        const result = await axios.get(Utils.URL + Utils.CLIENTS);
+    const loadClients = async (page) => {
+        const pageNumber = page ? page : 0;
+        const result = await axios.get(Utils.URL + Utils.CLIENTS + "?page=" + pageNumber);
         console.log(result);
-        setClient(result.data.reverse());
+        setPage(result.data);
+    }
+
+    const nextPage = (page) => {
+        if (page <= totalPage) {
+            loadClients(Number(page) + 1);
+        }
+    }
+
+    const previousPage = (page) => {
+        if (Number(page) > 0) {
+            loadClients(Number(page) - 1);
+        }
     }
 
     const deleteClient = async id => {
@@ -23,7 +36,6 @@ const Client = () => {
             await axios.delete(`${Utils.URL + Utils.CLIENTS}/${id}`);
             loadClients();
         }
-
     };
 
     return (
@@ -49,7 +61,7 @@ const Client = () => {
                     </thead>
                     <tbody>
                     {
-                        clients.map((client, index) => (
+                        elements?.map((client, index) => (
                             <tr key={client.id}>
                                 <th>{index + 1}</th>
                                 <td>{client.name}</td>
@@ -69,6 +81,20 @@ const Client = () => {
                     }
                     </tbody>
                 </table>
+                <nav aria-label="..." className="float-right">
+                    <ul className="pagination">
+                        <li className={Number(page) == 0 ? "page-item disabled" : "page-item"}>
+                            <a onClick={() => previousPage(page)} className="page-link" href="#" tabIndex="-1"
+                               >Previous</a>
+                        </li>
+                        <li className="page-item active" aria-current="page">
+                            <a className="page-link" href="#">{Number(page)+1}</a>
+                        </li>
+                        <li className={Number(page) > totalPage-1 ? "page-item disabled" : "page-item"}>
+                            <a onClick={() => nextPage(page)} className="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     );
