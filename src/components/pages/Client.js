@@ -83,14 +83,14 @@ const Client = () => {
                 </table>
                 <nav aria-label="..." className="float-right">
                     <ul className="pagination">
-                        <li className={Number(page) == 0 ? "page-item disabled" : "page-item"}>
+                        <li className={page === 0 ? "page-item disabled" : "page-item"}>
                             <a onClick={() => previousPage(page)} className="page-link" href="#" tabIndex="-1"
                                >Previous</a>
                         </li>
                         <li className="page-item active" aria-current="page">
-                            <a className="page-link" href="#">{Number(page)+1}</a>
+                            <a className="page-link" href="#">{page + 1}</a>
                         </li>
-                        <li className={Number(page) > totalPage-1 ? "page-item disabled" : "page-item"}>
+                        <li className={page+1 < totalPage ? "page-item" : "page-item disabled"}>
                             <a onClick={() => nextPage(page)} className="page-link" href="#">Next</a>
                         </li>
                     </ul>
