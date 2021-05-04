@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+## Description
+Frond-End application for saving, updating, reading and deleting client information and downloading a csv file with clients detail.
+This application is build on ReactJS library.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is hosted on the firebase. Please check the demo for this application.
+
+### DEMO
+[https://introcept-ui.web.app/](https://introcept-ui.web.app/)
+
+Back-End application for this application:
+[https://introcept-backend.herokuapp.com](https://introcept.herokuapp.com)
+
+## External Dependency
+### axios:
+This dependency is used to call the API and fetch data from backend application.
+
+### bootstrap:
+This dependency is used to create a view in the application.
+
+### react-router-dom:
+This dependency is used to navigate between the different pages and components.
+
 
 ## Available Scripts
 
